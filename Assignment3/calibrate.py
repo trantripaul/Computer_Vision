@@ -18,8 +18,8 @@ import glob
 import matplotlib.pyplot as plt
 
 # file names, modify as necessary
-calibimgfiles = 'calib1/*.jpg'
-resultfile = 'calibration.pickle'
+calibimgfiles = 'calib1/Left.jpg'
+resultfile = 'calibrationL.pickle'
 
 # checkerboard coordinates in 3D
 objp = np.zeros((6*8,3), np.float32)
@@ -86,12 +86,12 @@ fid.close()
 #
 # optionally go through and remove radial distortion from a set of images
 #
-#images = glob.glob(calibimgfiles)
-#for idx, fname in enumerate(images):
-#    img = cv2.imread(fname)
-#    img_size = (img.shape[1], img.shape[0])
-#
-#    dst = cv2.undistort(img, K, dist, None, K)
-#    udfname = fname+'undistort.jpg'
-#    cv2.imwrite(udfname,dst)
-#
+images = glob.glob(calibimgfiles)
+for idx, fname in enumerate(images):
+   img = cv2.imread(fname)
+   img_size = (img.shape[1], img.shape[0])
+
+   dst = cv2.undistort(img, K, dist, None, K)
+   udfname = fname+'undistort.jpg'
+   cv2.imwrite(udfname,dst)
+
